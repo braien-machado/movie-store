@@ -21,7 +21,7 @@ export default function MovieCard({ movie }) {
   // turn div into Link to details page
   return (
     <div
-      className="w-44 h-fit flex flex-col flex-wrap gap-2"
+      className="w-full vsm:w-44 h-fit flex flex-col flex-wrap gap-2"
     >
       <div className="border hover:border-gray-400 shadow-md transition-colors rounded-b">
         <div className="relative">
@@ -29,7 +29,8 @@ export default function MovieCard({ movie }) {
             <Heart size={ 32 } weight="fill" className="text-red-500" />
           </button>
           <img
-            className="w-44 h-44 object-cover"
+            className={ `w-full h-64 vsm:w-44 vsm:h-44 object-top 
+            vsm:object-center object-cover` }
             src={ imageUrl }
             alt={ `${title} poster` }
           />
