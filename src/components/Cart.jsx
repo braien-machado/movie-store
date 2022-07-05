@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Trash } from 'phosphor-react';
 import AppContext from '../context/AppContext';
 import { removeFromCart } from '../helpers/localStorage';
+import { getTotalPrice, priceToReal } from '../helpers/handlePrice';
 
 export default function Cart() {
   const { cart, setCart } = useContext(AppContext);
@@ -49,7 +50,7 @@ export default function Cart() {
                   <span
                     className="w-10 flex justify-end"
                   >
-                    { product.price * product.quantity }
+                    { priceToReal(product.price * product.quantity) }
                   </span>
                   <button
                     onClick={ () => removeProduct(product.id) }
@@ -66,7 +67,7 @@ export default function Cart() {
       <div className="">
         <div>
           <span>Total</span>
-          <span>R$ 19,98</span>
+          <span>{ getTotalPrice(cart) }</span>
         </div>
         <button type="button">Finalizar compra</button>
       </div>
