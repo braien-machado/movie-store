@@ -8,5 +8,5 @@ body {
 }
 
 header {
-  @apply text-white;
+  @apply text-white flex w-full h-16 bg-teal-400 justify-between items-center px-8 relative;
 }

@@ -4,25 +4,26 @@ import {
   Popcorn,
   ShoppingCart,
 } from 'phosphor-react';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import AppContext from '../context/AppContext';
 import Cart from './Cart';
 
 export default function Header() {
   const [isCartHidden, setIsCartHidden] = useState(true);
+  const [isSearchInputHidden, setIsSearchInputHidden] = useState(true);
   const { pathname } = useLocation();
+  const { cart } = useContext(AppContext);
 
   useEffect(() => {
     setIsCartHidden(true);
   }, [pathname]);
 
+  const toggleSearchInput = () => setIsSearchInputHidden(!isSearchInputHidden);
   const toggleCart = () => setIsCartHidden(!isCartHidden);
-
   return (
     <>
-      <header
-        className="flex w-full h-16 bg-teal-400 justify-between items-center px-8"
-      >
+      <header>
         <Link
           to="/"
           className={ `${pathname === '/' ? 'animate-bounce pointer-events-none' : ''}
@@ -32,7 +33,9 @@ export default function Header() {
           <Popcorn size={ 32 } weight="fill" />
         </Link>
         <label
-          className={ `flex items-center bg-white h-[80%] text-gray-800 rounded 
+          className={ `${isSearchInputHidden ? 'hidden' : 'flex'}
+          absolute top-[66px] right-0.5 vsm:static
+          vsm:flex items-center bg-white h-[80%] text-gray-800 rounded 
           px-3 border border-gray-400 min-w-fit w-1/3 gap-3` }
           htmlFor="search-input"
         >
@@ -44,6 +47,9 @@ export default function Header() {
           />
           <MagnifyingGlass className="text-gray-800" size={ 32 } />
         </label>
+        <button type="button" className="vsm:hidden" onClick={ toggleSearchInput }>
+          <MagnifyingGlass size={ 32 } />
+        </button>
         <div className="flex gap-4">
           <Link
             to="/favorites"
@@ -62,7 +68,7 @@ export default function Header() {
               className={ `absolute -top-3 -right-3 text-gray-800 text-sm w-6 h-6
               bg-amber-200 rounded-full flex items-center justify-center` }
             >
-              2
+              {!cart ? 0 : cart.length}
             </span>
             <ShoppingCart size={ 32 } weight="fill" />
           </button>

@@ -1,9 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AppContext from './AppContext';
+import useLocalStorage from '../helpers/useLocalStorage';
 
 function Provider({ children }) {
-  const contextValue = {};
+  const [cart, setCart] = useLocalStorage('cart', null);
+
+  const contextValue = {
+    cart,
+    setCart,
+  };
 
   return (
     <AppContext.Provider value={ contextValue }>
