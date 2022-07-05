@@ -24,7 +24,7 @@ export default function Cart() {
           </button>
         )}
       </div>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 h-[70%] overflow-y-auto no-scrollbar">
         {
           !cart
             ? <span>Seu carrinho está vazio.</span>
@@ -43,8 +43,12 @@ export default function Cart() {
                       { product.title }
                     </span>
                   </div>
-                  <span>{ product.quantity }</span>
-                  <span>{ product.price * product.quantity }</span>
+                  <span className="w-4 flex justify-center">{ product.quantity }</span>
+                  <span
+                    className="w-10 flex justify-end"
+                  >
+                    { product.price * product.quantity }
+                  </span>
                   <button type="button" className="hover:text-gray-400 transition-colors">
                     <Trash size={ 20 } weight="fill" />
                   </button>

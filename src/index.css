@@ -10,3 +10,12 @@ body {
 header {
   @apply text-white flex w-full h-16 bg-teal-400 justify-between items-center px-8 fixed top-0 z-10;
 }
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
