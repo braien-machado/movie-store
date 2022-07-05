@@ -32,7 +32,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex justify-center my-4">
+    <div className="flex justify-center my-20">
       <InfiniteScroll
         className="grid grid-cols-4 gap-10"
         dataLength={ movies.length }
