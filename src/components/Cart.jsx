@@ -13,8 +13,9 @@ export default function Cart() {
 
   return (
     <div
-      className={ `fixed top-16 right-0 z-10 h-[calc(100%-64px)] w-[500px] max-w-[500px]
-      bg-gray-100 border-2 border-gray-400 flex flex-col gap-8 px-4 pt-4` }
+      className={ `fixed top-16 right-0 z-10 h-[calc(100%-64px)] w-full
+      sm:w-[500px] max-w-[500px] bg-gray-100 border-2 border-gray-400
+      flex flex-col gap-8 px-4 pt-4` }
     >
       <div className="flex justify-between items-center">
         <h1 className="text-xl font-semibold">Meu Carrinho</h1>
@@ -66,7 +67,7 @@ export default function Cart() {
             )
         }
       </div>
-      <div className="w-full flex flex-col gap-2">
+      <div className="w-full flex flex-col mb-4 gap-2">
         <div className="flex justify-between items-end">
           <span className="h-fit">Total:</span>
           <span
