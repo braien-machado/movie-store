@@ -34,8 +34,8 @@ export default function Home() {
   return (
     <main className="flex justify-center">
       <InfiniteScroll
-        className={ `grid grid-cols-1 vsm:grid-cols-2 gap-10 
-        md:grid-cols-4 md:gap-4 lg:gap-10` }
+        className={ `grid grid-cols-1 sm:grid-cols-2 sm:gap-4 gap-10 
+        md:grid-cols-4 md:gap-4 lg:gap-20 ` }
         dataLength={ movies.length }
         next={ () => loadMovies() }
         hasMore
