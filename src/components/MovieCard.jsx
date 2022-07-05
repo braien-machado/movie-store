@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Heart } from 'phosphor-react';
+import AppContext from '../context/AppContext';
 import TextMovieSection from './TextMovieSection';
+import { addToCart } from '../helpers/localStorage';
 
 export default function MovieCard({ movie }) {
   const {
+    id,
     release_date: releaseDate,
     title,
     vote_average: voteAverage,
     poster_path: imagePath,
   } = movie;
+  const { setCart } = useContext(AppContext);
+
+  const price = '9.99';
+  const imageUrl = `https://image.tmdb.org/t/p/original/${imagePath}`;
 
   // turn div into Link to details page
   return (
@@ -23,7 +30,7 @@ export default function MovieCard({ movie }) {
           </button>
           <img
             className="w-44 h-44 object-cover"
-            src={ `https://image.tmdb.org/t/p/original/${imagePath}` }
+            src={ imageUrl }
             alt={ `${title} poster` }
           />
         </div>
@@ -31,10 +38,11 @@ export default function MovieCard({ movie }) {
           title={ title }
           releaseDate={ releaseDate }
           voteAverage={ voteAverage }
+          price={ price }
         />
       </div>
       <button
-        onClick={ () => console.log('added to cart!') }
+        onClick={ () => addToCart({ id, title, image: imageUrl, price }, setCart) }
         type="button"
         className={ `bg-indigo-700 hover:bg-indigo-800 py-1 text-white 
         font-semibold rounded transition-colors` }
@@ -47,6 +55,7 @@ export default function MovieCard({ movie }) {
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     poster_path: PropTypes.string,
     title: PropTypes.string,
     release_date: PropTypes.string,

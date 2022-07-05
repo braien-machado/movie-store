@@ -9,6 +9,7 @@ export default function TextMovieSection(props) {
     releaseDate,
     voteAverage,
     title,
+    price,
   } = props;
 
   const formattedDate = format(
@@ -29,14 +30,15 @@ export default function TextMovieSection(props) {
           </div>
           <span>Gênero</span>
         </div>
-        <span>R$ 79,99</span>
+        <span>{`R$ ${price.replace('.', ',')}`}</span>
       </div>
     </div>
   );
 }
 
 TextMovieSection.propTypes = {
-  title: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
   releaseDate: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   voteAverage: PropTypes.number.isRequired,
 };
