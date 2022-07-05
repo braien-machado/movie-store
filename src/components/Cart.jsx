@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { Trash } from 'phosphor-react';
 import AppContext from '../context/AppContext';
 import { removeFromCart } from '../helpers/localStorage';
@@ -19,7 +20,8 @@ export default function Cart() {
         <h1 className="text-xl font-semibold">Meu Carrinho</h1>
         { cart && (
           <button
-            className="text-indigo-600 hover:text-indigo-400 transition-colors underline underline-offset-2"
+            className={ `text-indigo-600 hover:text-indigo-400 
+            transition-colors underline underline-offset-2 ` }
             type="button"
             onClick={ clearCart }
           >
@@ -27,7 +29,7 @@ export default function Cart() {
           </button>
         )}
       </div>
-      <div className="flex flex-col gap-2 h-[70%] overflow-y-auto no-scrollbar">
+      <div className="flex flex-col gap-2 h-[65%] overflow-y-auto no-scrollbar">
         {
           !cart
             ? <span className="text-center">Seu carrinho está vazio.</span>
@@ -64,12 +66,22 @@ export default function Cart() {
             )
         }
       </div>
-      <div className="">
-        <div>
-          <span>Total</span>
-          <span>{ !cart ? 'R$ 0,00' : getTotalPrice(cart) }</span>
+      <div className="w-full flex flex-col gap-2">
+        <div className="flex justify-between items-end">
+          <span className="h-fit">Total:</span>
+          <span
+            className="text-2xl font-bold"
+          >
+            { !cart ? 'R$ 0,00' : getTotalPrice(cart) }
+          </span>
         </div>
-        <button type="button">Finalizar compra</button>
+        <Link
+          to="/checkout"
+          className={ `bg-indigo-700 hover:bg-indigo-800 text-white text-center 
+        font-semibold rounded transition-colors w-full py-2` }
+        >
+          Finalizar compra
+        </Link>
       </div>
     </div>
   );
