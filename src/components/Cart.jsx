@@ -19,7 +19,7 @@ export default function Cart() {
         <h1 className="text-xl font-semibold">Meu Carrinho</h1>
         { cart && (
           <button
-            className="text-indigo-600 underline underline-offset-2"
+            className="text-indigo-600 hover:text-indigo-400 transition-colors underline underline-offset-2"
             type="button"
             onClick={ clearCart }
           >
@@ -46,7 +46,7 @@ export default function Cart() {
                       { product.title }
                     </span>
                   </div>
-                  <span className="w-4 flex justify-center">{ product.quantity }</span>
+                  <span className="w-4 flex justify-end">{ product.quantity }</span>
                   <span
                     className="w-10 flex justify-end"
                   >
@@ -67,7 +67,7 @@ export default function Cart() {
       <div className="">
         <div>
           <span>Total</span>
-          <span>{ getTotalPrice(cart) }</span>
+          <span>{ !cart ? 'R$ 0,00' : getTotalPrice(cart) }</span>
         </div>
         <button type="button">Finalizar compra</button>
       </div>
