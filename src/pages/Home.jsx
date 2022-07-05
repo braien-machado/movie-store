@@ -31,16 +31,14 @@ export default function Home() {
     fetchMovies();
   }, []);
 
-  console.log(movies, currentPage);
-
   return (
-    <div>
+    <div className="flex justify-center my-4">
       <InfiniteScroll
-        className="grid grid-cols-4"
+        className="grid grid-cols-4 gap-10"
         dataLength={ movies.length }
         next={ () => loadMovies() }
         hasMore
-        loader={ <h4 className="text-green-600">Carregando...</h4> }
+        loader={ <h4>Carregando...</h4> }
         endMessage={
           <p style={ { textAlign: 'center' } }>
             <b>Você chegou ao fim do catálogo!</b>

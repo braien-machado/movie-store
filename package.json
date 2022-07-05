@@ -9,6 +9,7 @@
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json ."
   },
   "dependencies": {
+    "date-fns": "^2.28.0",
     "phosphor-react": "^1.4.1",
     "prop-types": "^15.8.1",
     "react": "^18.0.0",
