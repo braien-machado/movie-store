@@ -5,10 +5,13 @@ import useLocalStorage from '../helpers/useLocalStorage';
 
 function Provider({ children }) {
   const [cart, setCart] = useLocalStorage('cart', null);
+  const [favorites, setFavorites] = useLocalStorage('favorites', []);
 
   const contextValue = {
     cart,
     setCart,
+    favorites,
+    setFavorites,
   };
 
   return (

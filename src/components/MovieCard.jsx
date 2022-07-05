@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import { Heart } from 'phosphor-react';
 import AppContext from '../context/AppContext';
 import TextMovieSection from './TextMovieSection';
-import { addToCart } from '../helpers/localStorage';
+import { addToCart, updateFavorite } from '../helpers/localStorage';
 
 export default function MovieCard({ movie }) {
+  const { favorites, setFavorites, setCart } = useContext(AppContext);
+
   const {
     id,
     release_date: releaseDate,
@@ -13,7 +15,12 @@ export default function MovieCard({ movie }) {
     vote_average: voteAverage,
     poster_path: imagePath,
   } = movie;
-  const { setCart } = useContext(AppContext);
+
+  const isFavorite = () => favorites.some((favorite) => favorite === id);
+  const toggleFavorite = () => updateFavorite(id, setFavorites);
+
+  console.log(favorites, id);
+  console.log(isFavorite());
 
   const price = '9.99';
   const imageUrl = `https://image.tmdb.org/t/p/original/${imagePath}`;
@@ -25,8 +32,16 @@ export default function MovieCard({ movie }) {
     >
       <div className="border hover:border-gray-400 shadow-md transition-colors rounded-b">
         <div className="relative">
-          <button type="button" className="absolute right-2 top-2">
-            <Heart size={ 32 } weight="fill" className="text-red-500" />
+          <button
+            onClick={ toggleFavorite }
+            type="button"
+            className="absolute right-2 top-2"
+          >
+            <Heart
+              size={ 32 }
+              weight="fill"
+              className={ isFavorite() ? 'text-red-500' : 'text-gray-600' }
+            />
           </button>
           <img
             className={ `w-full h-64 md:w-44 md:h-44 object-top 
