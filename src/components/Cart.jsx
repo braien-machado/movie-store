@@ -1,16 +1,18 @@
 import React, { useContext } from 'react';
 import { Trash } from 'phosphor-react';
 import AppContext from '../context/AppContext';
+import { removeFromCart } from '../helpers/localStorage';
 
 export default function Cart() {
   const { cart, setCart } = useContext(AppContext);
 
   const clearCart = () => setCart(null);
+  const removeProduct = (id) => removeFromCart(id, setCart);
 
   return (
     <div
-      className={ `fixed top-16 right-0 z-10 h-screen max-w-[500px] bg-gray-100 
-      border-2 border-gray-400 flex flex-col gap-8 px-4 pt-4` }
+      className={ `fixed top-16 right-0 z-10 h-[calc(100%-64px)] w-[500px] max-w-[500px]
+      bg-gray-100 border-2 border-gray-400 flex flex-col gap-8 px-4 pt-4` }
     >
       <div className="flex justify-between items-center">
         <h1 className="text-xl font-semibold">Meu Carrinho</h1>
@@ -27,7 +29,7 @@ export default function Cart() {
       <div className="flex flex-col gap-2 h-[70%] overflow-y-auto no-scrollbar">
         {
           !cart
-            ? <span>Seu carrinho está vazio.</span>
+            ? <span className="text-center">Seu carrinho está vazio.</span>
             : (
               cart.map((product) => (
                 <div key={ product.id } className="flex gap-10 h-8 items-center">
@@ -49,7 +51,11 @@ export default function Cart() {
                   >
                     { product.price * product.quantity }
                   </span>
-                  <button type="button" className="hover:text-gray-400 transition-colors">
+                  <button
+                    onClick={ () => removeProduct(product.id) }
+                    type="button"
+                    className="hover:text-gray-400 transition-colors"
+                  >
                     <Trash size={ 20 } weight="fill" />
                   </button>
                 </div>

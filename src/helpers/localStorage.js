@@ -26,3 +26,11 @@ export const addToCart = (
     }
   }
 };
+
+export const removeFromCart = (id, updateCart) => {
+  const data = getCart();
+
+  const newCart = data.filter((product) => product.id !== id);
+
+  return newCart.length === 0 ? updateCart(null) : updateCart(newCart);
+};
