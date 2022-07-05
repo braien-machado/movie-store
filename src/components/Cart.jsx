@@ -47,8 +47,8 @@ export default function Cart() {
                       src={ product.image }
                     />
                     <span
-                      className={`whitespace-nowrap overflow-hidden w-[calc(30vw)]
-                      vsm:w-64`}
+                      className={ `whitespace-nowrap overflow-hidden w-[calc(30vw)]
+                      vsm:w-64` }
                     >
                       { product.title }
                     </span>

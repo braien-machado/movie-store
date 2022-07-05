@@ -1,10 +1,10 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx}'],
   theme: {
-    screens: {
-      vsm: '500px',
-    },
     extend: {
+      screens: {
+        vsm: '500px',
+      },
       fontFamily: {
         sans: 'Roboto, sans-serif',
       },

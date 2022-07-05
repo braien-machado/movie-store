@@ -34,13 +34,14 @@ export default function Home() {
   return (
     <main className="flex justify-center">
       <InfiniteScroll
-        className="grid grid-cols-4 gap-10"
+        className={ `grid grid-cols-1 vsm:grid-cols-2 gap-10 
+        md:grid-cols-4 md:gap-4 lg:gap-10` }
         dataLength={ movies.length }
         next={ () => loadMovies() }
         hasMore
-        loader={ <h4>Carregando...</h4> }
+        loader={ <h4 className="absolute text-center">Carregando...</h4> }
         endMessage={
-          <p style={ { textAlign: 'center' } }>
+          <p className="absolute text-center">
             <b>Você chegou ao fim do catálogo!</b>
           </p>
         }
