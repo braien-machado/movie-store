@@ -1,5 +1,5 @@
-async function getMovies() {
-  const data = await fetch(`https://api.themoviedb.org/3/movie/550?api_key=${environment.API_KEY}`)
+async function getMovies(page = 1) {
+  const data = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${environment.API_KEY}&language=pt&page=${page}`)
     .then((result) => result.json());
 
   return data;
