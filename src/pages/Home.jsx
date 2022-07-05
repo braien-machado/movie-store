@@ -32,7 +32,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex justify-center my-20">
+    <main className="flex justify-center">
       <InfiniteScroll
         className="grid grid-cols-4 gap-10"
         dataLength={ movies.length }
@@ -48,6 +48,6 @@ export default function Home() {
         { movies.map((movie, index) => (
           <MovieCard movie={ movie } key={ `${movie.id}-${index}` } />))}
       </InfiniteScroll>
-    </div>
+    </main>
   );
 }
