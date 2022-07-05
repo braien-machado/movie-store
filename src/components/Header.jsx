@@ -38,7 +38,9 @@ export default function Header() {
       <div className="flex gap-4">
         <Link
           to="/favorites"
-          className={ `${pathname === '/favorites' ? 'animate-bounce pointer-events-none text-red-500' : ''} hover:animate-pulse hover:text-red-500 transition-colors` }
+          className={ `${pathname === '/favorites'
+            ? 'animate-bounce pointer-events-none text-red-500' : ''}
+            hover:animate-pulse hover:text-red-500 transition-colors` }
         >
           <Heart size={ 32 } weight="fill" />
         </Link>
