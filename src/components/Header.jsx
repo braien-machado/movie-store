@@ -19,6 +19,8 @@ export default function Header() {
     setIsCartHidden(true);
   }, [pathname]);
 
+  const countProducts = () => cart.reduce((acc, cur) => acc + cur.quantity, 0);
+
   const toggleSearchInput = () => setIsSearchInputHidden(!isSearchInputHidden);
   const toggleCart = () => setIsCartHidden(!isCartHidden);
   return (
@@ -68,7 +70,7 @@ export default function Header() {
               className={ `absolute -top-3 -right-3 text-gray-800 text-sm w-6 h-6
               bg-amber-200 rounded-full flex items-center justify-center` }
             >
-              {!cart ? 0 : cart.length}
+              {!cart ? 0 : countProducts()}
             </span>
             <ShoppingCart size={ 32 } weight="fill" />
           </button>
