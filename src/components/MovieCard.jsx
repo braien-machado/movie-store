@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { format } from 'date-fns';
-import ptBR from 'date-fns/locale/pt-BR';
-import { Heart, Star } from 'phosphor-react';
+import { Heart } from 'phosphor-react';
+import TextMovieSection from './TextMovieSection';
 
 export default function MovieCard({ movie }) {
   const {
@@ -12,12 +11,7 @@ export default function MovieCard({ movie }) {
     poster_path: imagePath,
   } = movie;
 
-  const formattedDate = format(
-    new Date(releaseDate),
-    'd\' de \'MMMM\', \'y',
-    { locale: ptBR },
-  );
-
+  // turn div into Link to details page
   return (
     <div
       className="w-44 h-fit flex flex-col flex-wrap gap-2"
@@ -33,23 +27,17 @@ export default function MovieCard({ movie }) {
             alt={ `${title} poster` }
           />
         </div>
-        <div className="flex flex-col items-center gap-1 my-2">
-          <span>{formattedDate}</span>
-          <h1 className="text-center text-lg font-bold text-gray-800">{title}</h1>
-          <div className="flex items-center gap-4">
-            <div className="flex gap-1">
-              <Star size={ 20 } weight="fill" className="text-gray-600" />
-              <span className="font-bold text-gray-800">{voteAverage}</span>
-            </div>
-            <span>Gênero</span>
-          </div>
-          <span>R$ 79,99</span>
-        </div>
+        <TextMovieSection
+          title={ title }
+          releaseDate={ releaseDate }
+          voteAverage={ voteAverage }
+        />
       </div>
       <button
         onClick={ () => console.log('added to cart!') }
         type="button"
-        className="bg-indigo-700 hover:bg-indigo-800 py-1 text-white font-semibold rounded transition-colors"
+        className={ `bg-indigo-700 hover:bg-indigo-800 py-1 text-white 
+        font-semibold rounded transition-colors` }
       >
         Adicionar
       </button>
