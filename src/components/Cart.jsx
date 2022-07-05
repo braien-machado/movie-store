@@ -36,7 +36,10 @@ export default function Cart() {
             ? <span className="text-center">Seu carrinho está vazio.</span>
             : (
               cart.map((product) => (
-                <div key={ product.id } className="flex gap-10 h-8 items-center">
+                <div
+                  key={ product.id }
+                  className="flex gap-4 h-8 justify-between items-center"
+                >
                   <div className="flex items-center gap-2">
                     <img
                       alt={ product.title }
@@ -44,24 +47,27 @@ export default function Cart() {
                       src={ product.image }
                     />
                     <span
-                      className="whitespace-nowrap overflow-hidden w-64"
+                      className={`whitespace-nowrap overflow-hidden w-[calc(30vw)]
+                      vsm:w-64`}
                     >
                       { product.title }
                     </span>
                   </div>
-                  <span className="w-4 flex justify-end">{ product.quantity }</span>
-                  <span
-                    className="w-10 flex justify-end"
-                  >
-                    { priceToReal(product.price * product.quantity) }
-                  </span>
-                  <button
-                    onClick={ () => removeProduct(product.id) }
-                    type="button"
-                    className="hover:text-gray-400 transition-colors"
-                  >
-                    <Trash size={ 20 } weight="fill" />
-                  </button>
+                  <div className="flex items-center gap-12">
+                    <span className="w-4 flex justify-end">{ product.quantity }</span>
+                    <span
+                      className="w-10 flex justify-end"
+                    >
+                      { priceToReal(product.price * product.quantity) }
+                    </span>
+                    <button
+                      onClick={ () => removeProduct(product.id) }
+                      type="button"
+                      className="hover:text-gray-400 transition-colors"
+                    >
+                      <Trash size={ 20 } weight="fill" />
+                    </button>
+                  </div>
                 </div>
               ))
             )

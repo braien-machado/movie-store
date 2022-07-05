@@ -2,7 +2,7 @@ module.exports = {
   content: ['./src/**/*.{js,jsx}'],
   theme: {
     screens: {
-      vsm: '480px',
+      vsm: '500px',
     },
     extend: {
       fontFamily: {
