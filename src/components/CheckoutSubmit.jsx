@@ -1,9 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import AppContext from '../context/AppContext';
 import { getTotalPrice } from '../helpers/handlePrice';
+import validateFields from '../helpers/validation';
 
-export default function CheckoutSubmit() {
+export default function CheckoutSubmit({ values }) {
+  const [isDisabled, setIsDisabled] = useState(true);
   const { cart } = useContext(AppContext);
+
+  useEffect(() => {
+    if (validateFields(values)) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  }, [values]);
+
   return (
     <div className="w-full flex flex-col gap-10">
       <div className="flex justify-between items-end">
@@ -17,7 +29,8 @@ export default function CheckoutSubmit() {
       <button
         type="button"
         to="/checkout"
-        className={ `${!cart ? 'pointer-events-none bg-gray-400' : 'bg-indigo-700'}
+        className={ `${!cart || isDisabled
+          ? 'pointer-events-none bg-gray-400' : 'bg-indigo-700'}
         hover:bg-indigo-800 text-white text-center
         font-semibold rounded transition-colors w-full py-2` }
       >
@@ -26,3 +39,16 @@ export default function CheckoutSubmit() {
     </div>
   );
 }
+
+CheckoutSubmit.propTypes = {
+  values: PropTypes.shape({
+    name: PropTypes.string,
+    cpf: PropTypes.string,
+    cel: PropTypes.string,
+    email: PropTypes.string,
+    cep: PropTypes.string,
+    address: PropTypes.string,
+    city: PropTypes.string,
+    state: PropTypes.string,
+  }).isRequired,
+};
