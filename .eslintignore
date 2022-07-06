@@ -1,0 +1,3 @@
+build/*
+node-modules/
+settings.js
