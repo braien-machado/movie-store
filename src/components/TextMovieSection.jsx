@@ -12,15 +12,21 @@ export default function TextMovieSection(props) {
     price,
   } = props;
 
-  const formattedDate = format(
-    new Date(releaseDate),
-    'd\' de \'MMMM\', \'y',
-    { locale: ptBR },
-  );
+  const formatDate = () => {
+    try {
+      return format(
+        new Date(releaseDate),
+        'd\' de \'MMMM\', \'y',
+        { locale: ptBR },
+      );
+    } catch (error) {
+      return '';
+    }
+  };
   // request first genre by id
   return (
     <div className="h-36 flex flex-col justify-between items-center my-2">
-      <span>{formattedDate}</span>
+      <span>{formatDate()}</span>
       <h1 className="text-center font-bold text-gray-800">{title}</h1>
       <div className="flex flex-col items-center">
         <div className="flex items-center gap-4">
