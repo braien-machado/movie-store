@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import { Heart } from 'phosphor-react';
 import AppContext from '../context/AppContext';
 import TextMovieSection from './TextMovieSection';
-import { addToCart, updateFavorite } from '../helpers/localStorage';
 
 export default function MovieCard({ movie }) {
-  const { favorites, setFavorites, setCart } = useContext(AppContext);
+  const {
+    favorites,
+    addToCart,
+    updateFavorite,
+  } = useContext(AppContext);
 
   const {
     id,
@@ -16,11 +19,10 @@ export default function MovieCard({ movie }) {
     poster_path: imagePath,
   } = movie;
 
-  const isFavorite = () => favorites.some((favorite) => favorite === id);
-  const toggleFavorite = () => updateFavorite(id, setFavorites);
-
   const price = '9.99';
   const imageUrl = `https://image.tmdb.org/t/p/original/${imagePath}`;
+  const isFavorite = () => favorites.some((favorite) => favorite.id === id);
+  const toggleFavorite = () => updateFavorite({ id, title, image: imageUrl, price });
 
   // turn div into Link to details page
   return (
@@ -37,7 +39,7 @@ export default function MovieCard({ movie }) {
             <Heart
               size={ 32 }
               weight="fill"
-              className={ isFavorite() ? 'text-red-500' : 'text-gray-600' }
+              className={ favorites && isFavorite() ? 'text-red-500' : 'text-gray-600' }
             />
           </button>
           <img
@@ -55,7 +57,7 @@ export default function MovieCard({ movie }) {
         />
       </div>
       <button
-        onClick={ () => addToCart({ id, title, image: imageUrl, price }, setCart) }
+        onClick={ () => addToCart({ id, title, image: imageUrl, price }) }
         type="button"
         className={ `bg-indigo-700 hover:bg-indigo-800 py-1 text-white 
         font-semibold rounded transition-colors` }

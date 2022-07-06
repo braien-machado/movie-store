@@ -1,20 +1,20 @@
 import React, { useContext } from 'react';
-import { Trash } from 'phosphor-react';
+import { ShoppingCart, Trash } from 'phosphor-react';
 import AppContext from '../context/AppContext';
 import { priceToReal } from '../helpers/handlePrice';
 import ListHeader from './ListHeader';
-import CartCheckout from './CartCheckout';
 import ListItemCoreInfo from './ListItemCoreInfo';
 
-export default function Cart() {
+export default function Favorites() {
   const {
-    cart,
-    setCart,
+    favorites,
+    setFavorites,
+    addToCart,
     removeFromLocalStorage,
   } = useContext(AppContext);
 
-  const clearCart = () => setCart(null);
-  const removeProduct = (id) => removeFromLocalStorage(id, 'cart', setCart);
+  const clearFavorites = () => setFavorites(null);
+  const removeProduct = (id) => removeFromLocalStorage(id, 'favorites', setFavorites);
 
   return (
     <div
@@ -22,25 +22,32 @@ export default function Cart() {
       sm:w-[500px] max-w-[500px] bg-gray-100 border-2 border-gray-400
       flex flex-col gap-8 px-4 pt-4` }
     >
-      <ListHeader clear={ clearCart } list={ cart } title="Meu Carrinho" />
-      <div className="flex flex-col gap-2 h-[65%] overflow-y-auto no-scrollbar">
+      <ListHeader clear={ clearFavorites } list={ favorites } title="Meus Favoritos" />
+      <div className="flex flex-col gap-2 h-[80%] overflow-y-auto no-scrollbar">
         {
-          !cart
-            ? <span className="text-center">Seu carrinho está vazio.</span>
+          !favorites
+            ? <span className="text-center">Nenhum favorito.</span>
             : (
-              cart.map((product) => (
+              favorites.map((product) => (
                 <div
                   key={ product.id }
                   className="flex gap-4 h-8 justify-between items-center"
                 >
                   <ListItemCoreInfo title={ product.title } image={ product.image } />
-                  <div className="flex items-center gap-12">
+                  <div className="flex items-center justify-end gap-4">
                     <span className="w-4 flex justify-end">{ product.quantity }</span>
                     <span
                       className="w-10 flex justify-end"
                     >
-                      { priceToReal(product.price * product.quantity) }
+                      { priceToReal(Number(product.price)) }
                     </span>
+                    <button
+                      onClick={ () => addToCart(product) }
+                      type="button"
+                      className="text-teal-600 hover:text-teal-400 transition-colors"
+                    >
+                      <ShoppingCart size={ 20 } weight="fill" />
+                    </button>
                     <button
                       onClick={ () => removeProduct(product.id) }
                       type="button"
@@ -54,7 +61,6 @@ export default function Cart() {
             )
         }
       </div>
-      <CartCheckout cart={ cart } />
     </div>
   );
 }
