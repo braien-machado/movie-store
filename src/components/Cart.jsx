@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import { Trash } from 'phosphor-react';
 import AppContext from '../context/AppContext';
 import { removeFromCart } from '../helpers/localStorage';
-import { getTotalPrice, priceToReal } from '../helpers/handlePrice';
-import ListSection from './ListSection';
+import { priceToReal } from '../helpers/handlePrice';
+import ListHeader from './ListHeader';
 import CartCheckout from './CartCheckout';
+import ListItemCoreInfo from './ListItemCoreInfo';
 
 export default function Cart() {
   const { cart, setCart } = useContext(AppContext);
@@ -19,7 +19,7 @@ export default function Cart() {
       sm:w-[500px] max-w-[500px] bg-gray-100 border-2 border-gray-400
       flex flex-col gap-8 px-4 pt-4` }
     >
-      <ListSection clear={ clearCart } list={ cart } title="Meu Carrinho" />
+      <ListHeader clear={ clearCart } list={ cart } title="Meu Carrinho" />
       <div className="flex flex-col gap-2 h-[65%] overflow-y-auto no-scrollbar">
         {
           !cart
@@ -30,19 +30,7 @@ export default function Cart() {
                   key={ product.id }
                   className="flex gap-4 h-8 justify-between items-center"
                 >
-                  <div className="flex items-center gap-2">
-                    <img
-                      alt={ product.title }
-                      className="w-8 h-8 object-cover"
-                      src={ product.image }
-                    />
-                    <span
-                      className={ `whitespace-nowrap overflow-hidden w-[calc(30vw)]
-                      vsm:w-64` }
-                    >
-                      { product.title }
-                    </span>
-                  </div>
+                  <ListItemCoreInfo title={ product.title } image={ product.image } />
                   <div className="flex items-center gap-12">
                     <span className="w-4 flex justify-end">{ product.quantity }</span>
                     <span

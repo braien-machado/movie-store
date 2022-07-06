@@ -3,7 +3,8 @@ import { ShoppingCart, Trash } from 'phosphor-react';
 import AppContext from '../context/AppContext';
 import { addToCart, removeFromFavorites } from '../helpers/localStorage';
 import { priceToReal } from '../helpers/handlePrice';
-import ListSection from './ListSection';
+import ListHeader from './ListHeader';
+import ListItemCoreInfo from './ListItemCoreInfo';
 
 export default function Favorites() {
   const { favorites, setFavorites, setCart } = useContext(AppContext);
@@ -17,8 +18,8 @@ export default function Favorites() {
       sm:w-[500px] max-w-[500px] bg-gray-100 border-2 border-gray-400
       flex flex-col gap-8 px-4 pt-4` }
     >
-      <ListSection clear={ clearFavorites } list={ favorites } title="Meus Favoritos" />
-      <div className="flex flex-col gap-2 h-[65%] overflow-y-auto no-scrollbar">
+      <ListHeader clear={ clearFavorites } list={ favorites } title="Meus Favoritos" />
+      <div className="flex flex-col gap-2 h-[80%] overflow-y-auto no-scrollbar">
         {
           !favorites
             ? <span className="text-center">Nenhum favorito.</span>
@@ -28,19 +29,7 @@ export default function Favorites() {
                   key={ product.id }
                   className="flex gap-4 h-8 justify-between items-center"
                 >
-                  <div className="flex items-center gap-2">
-                    <img
-                      alt={ product.title }
-                      className="w-8 h-8 object-cover"
-                      src={ product.image }
-                    />
-                    <span
-                      className={ `whitespace-nowrap overflow-hidden w-[calc(30vw)]
-                      vsm:w-64` }
-                    >
-                      { product.title }
-                    </span>
-                  </div>
+                  <ListItemCoreInfo title={ product.title } image={ product.image } />
                   <div className="flex items-center justify-end gap-4">
                     <span className="w-4 flex justify-end">{ product.quantity }</span>
                     <span

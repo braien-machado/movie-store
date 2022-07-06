@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function ListSection(props) {
+export default function ListHeader(props) {
   const { title, list, clear } = props;
   return (
     <div className="flex justify-between items-center">
@@ -20,19 +20,19 @@ export default function ListSection(props) {
   );
 }
 
-ListSection.propTypes = {
+ListHeader.propTypes = {
   title: PropTypes.string.isRequired,
   clear: PropTypes.func.isRequired,
   list: PropTypes.arrayOf(
     PropTypes.shape({
       price: PropTypes.string,
       title: PropTypes.string,
-      imageUrl: PropTypes.string,
+      image: PropTypes.string,
       id: PropTypes.number,
     }),
   ),
 };
 
-ListSection.defaultProps = {
+ListHeader.defaultProps = {
   list: null,
 };
