@@ -55,17 +55,16 @@ export default function CheckoutForm(props) {
         onChange={ ({ target: { value } }) => handleChange('email', value) }
       />
       <div className="flex gap-8 flex-col sm:flex-row md:flex-col xl:flex-row">
-        {/* cep input width must be half of its sibling */}
         <InputMask
           mask="99999-999"
-          className={ `${INPUT_BASIC_STYLE}` }
+          className={ `${INPUT_BASIC_STYLE} md:w-full xl:max-w-[33%]` }
           type="text"
           placeholder="CEP"
           value={ cep }
           onChange={ ({ target: { value } }) => handleChange('cep', value) }
         />
         <input
-          className={ `${INPUT_BASIC_STYLE}` }
+          className={ `${INPUT_BASIC_STYLE} w-full` }
           type="text"
           placeholder="Endereço"
           value={ address }
