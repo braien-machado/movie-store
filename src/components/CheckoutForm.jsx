@@ -3,7 +3,7 @@ import InputMask from 'react-input-mask';
 import PropTypes from 'prop-types';
 
 const INPUT_BASIC_STYLE = `border-2 bg-gray-100 border-gray-300 p-3 rounded
-focus:outline-gray-500`;
+focus:outline-gray-500 w-full`;
 
 export default function CheckoutForm(props) {
   const { values, updateValue } = props;
@@ -57,14 +57,14 @@ export default function CheckoutForm(props) {
       <div className="flex gap-8 flex-col sm:flex-row md:flex-col xl:flex-row">
         <InputMask
           mask="99999-999"
-          className={ `${INPUT_BASIC_STYLE} md:w-full xl:max-w-[33%]` }
+          className={ `${INPUT_BASIC_STYLE} xl:max-w-[33%]` }
           type="text"
           placeholder="CEP"
           value={ cep }
           onChange={ ({ target: { value } }) => handleChange('cep', value) }
         />
         <input
-          className={ `${INPUT_BASIC_STYLE} w-full` }
+          className={ `${INPUT_BASIC_STYLE}` }
           type="text"
           placeholder="Endereço"
           value={ address }
