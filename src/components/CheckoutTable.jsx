@@ -1,25 +1,25 @@
-import React from 'react';
-import { Trash } from 'phosphor-react';
+import React, { useContext } from 'react';
+import AppContext from '../context/AppContext';
+import TableRow from './TableRow';
 
 export default function CheckoutTable() {
+  const { cart } = useContext(AppContext);
+
   return (
     <table>
       <thead>
-        <tr>
-          <th>Imagem</th>
-          <th>Nome</th>
-          <th>Qtd</th>
-          <th>Preço</th>
+        <tr className="text-lg text-left">
+          <th className="font-normal pb-4">Imagem</th>
+          <th className="font-normal pb-4 px-4">Nome</th>
+          <th className="font-normal pb-4">Qtd</th>
+          <th className="font-normal pb-4 px-4">Preço</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>imagem</td>
-          <td>Nome do filme</td>
-          <td>1</td>
-          <td>R$ 9,99</td>
-          <td><Trash /></td>
-        </tr>
+        {
+          cart && cart.map((product) => (
+            <TableRow key={ product.id } product={ product } />))
+        }
       </tbody>
     </table>
   );

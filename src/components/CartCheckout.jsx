@@ -16,8 +16,8 @@ export default function CartCheckout({ cart }) {
       </div>
       <Link
         to="/checkout"
-        className={ `${!cart ? 'pointer-events-none bg-gray-400' : ''}
-        bg-indigo-700 hover:bg-indigo-800 text-white text-center
+        className={ `${!cart ? 'pointer-events-none bg-gray-400' : 'bg-indigo-700'}
+      hover:bg-indigo-800 text-white text-center
         font-semibold rounded transition-colors w-full py-2` }
       >
         Finalizar compra

@@ -13,7 +13,7 @@ export default function Checkout() {
         <h1 className="text-2xl">Finalizar Compra</h1>
         <CheckoutForm />
       </div>
-      <div className="flex flex-col justify-between">
+      <div className="flex flex-col justify-between gap-8">
         <CheckoutTable />
         <div className="w-full flex flex-col gap-10">
           <div className="flex justify-between items-end">
@@ -27,8 +27,8 @@ export default function Checkout() {
           <button
             type="button"
             to="/checkout"
-            className={ `${!cart ? 'pointer-events-none bg-gray-400' : ''}
-            bg-indigo-700 hover:bg-indigo-800 text-white text-center
+            className={ `${!cart ? 'pointer-events-none bg-gray-400' : 'bg-indigo-700'}
+             hover:bg-indigo-800 text-white text-center
             font-semibold rounded transition-colors w-full py-2` }
           >
             Finalizar
