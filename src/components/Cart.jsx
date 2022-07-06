@@ -4,6 +4,8 @@ import { Trash } from 'phosphor-react';
 import AppContext from '../context/AppContext';
 import { removeFromCart } from '../helpers/localStorage';
 import { getTotalPrice, priceToReal } from '../helpers/handlePrice';
+import ListSection from './ListSection';
+import CartCheckout from './CartCheckout';
 
 export default function Cart() {
   const { cart, setCart } = useContext(AppContext);
@@ -17,19 +19,7 @@ export default function Cart() {
       sm:w-[500px] max-w-[500px] bg-gray-100 border-2 border-gray-400
       flex flex-col gap-8 px-4 pt-4` }
     >
-      <div className="flex justify-between items-center">
-        <h1 className="text-xl font-semibold">Meu Carrinho</h1>
-        { cart && (
-          <button
-            className={ `text-indigo-600 hover:text-indigo-400 
-            transition-colors underline underline-offset-2 ` }
-            type="button"
-            onClick={ clearCart }
-          >
-            Esvaziar
-          </button>
-        )}
-      </div>
+      <ListSection clear={ clearCart } list={ cart } title="Meu Carrinho" />
       <div className="flex flex-col gap-2 h-[65%] overflow-y-auto no-scrollbar">
         {
           !cart
@@ -73,23 +63,7 @@ export default function Cart() {
             )
         }
       </div>
-      <div className="w-full flex flex-col mb-4 gap-2">
-        <div className="flex justify-between items-end">
-          <span className="h-fit">Total:</span>
-          <span
-            className="text-2xl font-bold"
-          >
-            { !cart ? 'R$ 0,00' : getTotalPrice(cart) }
-          </span>
-        </div>
-        <Link
-          to="/checkout"
-          className={ `bg-indigo-700 hover:bg-indigo-800 text-white text-center 
-        font-semibold rounded transition-colors w-full py-2` }
-        >
-          Finalizar compra
-        </Link>
-      </div>
+      <CartCheckout cart={ cart } />
     </div>
   );
 }

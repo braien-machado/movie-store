@@ -3,6 +3,7 @@ import { ShoppingCart, Trash } from 'phosphor-react';
 import AppContext from '../context/AppContext';
 import { addToCart, removeFromFavorites } from '../helpers/localStorage';
 import { priceToReal } from '../helpers/handlePrice';
+import ListSection from './ListSection';
 
 export default function Favorites() {
   const { favorites, setFavorites, setCart } = useContext(AppContext);
@@ -16,19 +17,7 @@ export default function Favorites() {
       sm:w-[500px] max-w-[500px] bg-gray-100 border-2 border-gray-400
       flex flex-col gap-8 px-4 pt-4` }
     >
-      <div className="flex justify-between items-center">
-        <h1 className="text-xl font-semibold">Meus Favoritos</h1>
-        { favorites && (
-          <button
-            className={ `text-indigo-600 hover:text-indigo-400 
-            transition-colors underline underline-offset-2 ` }
-            type="button"
-            onClick={ clearFavorites }
-          >
-            Esvaziar
-          </button>
-        )}
-      </div>
+      <ListSection clear={ clearFavorites } list={ favorites } title="Meus Favoritos" />
       <div className="flex flex-col gap-2 h-[65%] overflow-y-auto no-scrollbar">
         {
           !favorites
