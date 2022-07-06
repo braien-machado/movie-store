@@ -12,7 +12,8 @@ export default function Checkout() {
         Finalizar Compra
       </h1>
       <div
-        className="flex flex-col w-full items-center md:items-start md:flex-row gap-8 xl:gap-0 md:justify-between 2xl:justify-center 2xl:gap-[10%]"
+        className={ `"flex flex-col w-full items-center md:items-start md:flex-row gap-8
+        xl:gap-0 md:justify-between 2xl:justify-center 2xl:gap-[10%]"` }
       >
         <CheckoutForm />
         <div className="flex flex-col justify-between gap-8 max-w-[500px]">

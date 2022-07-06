@@ -5,7 +5,7 @@ focus:outline-gray-500`;
 
 export default function CheckoutForm() {
   return (
-    <form action="" className="flex flex-col gap-8 w-[90%] max-w-[492px] md:w-[300px] xl:w-[492px]">
+    <form className="flex flex-col gap-8 w-[90%] max-w-[492px] md:w-[300px] xl:w-[492px]">
       <input
         className={ `${INPUT_BASIC_STYLE}` }
         type="text"
