@@ -20,10 +20,10 @@ export default function Favorites() {
     <div
       className={ `fixed top-16 right-0 z-10 h-[calc(100%-64px)] w-full
       sm:w-[500px] max-w-[500px] bg-gray-100 border-2 border-gray-400
-      flex flex-col gap-8 px-4 pt-4` }
+      flex flex-col gap-8 p-4 overflow-y-auto no-scrollbar` }
     >
       <ListHeader clear={ clearFavorites } list={ favorites } title="Meus Favoritos" />
-      <div className="flex flex-col gap-2 h-[80%] overflow-y-auto no-scrollbar">
+      <div className="flex flex-col gap-2">
         {
           !favorites
             ? <span className="text-center">Nenhum favorito.</span>
