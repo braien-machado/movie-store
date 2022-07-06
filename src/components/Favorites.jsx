@@ -1,16 +1,20 @@
 import React, { useContext } from 'react';
 import { ShoppingCart, Trash } from 'phosphor-react';
 import AppContext from '../context/AppContext';
-import { addToCart, removeFromFavorites } from '../helpers/localStorage';
 import { priceToReal } from '../helpers/handlePrice';
 import ListHeader from './ListHeader';
 import ListItemCoreInfo from './ListItemCoreInfo';
 
 export default function Favorites() {
-  const { favorites, setFavorites, setCart } = useContext(AppContext);
+  const {
+    favorites,
+    setFavorites,
+    addToCart,
+    removeFromLocalStorage,
+  } = useContext(AppContext);
 
   const clearFavorites = () => setFavorites(null);
-  const removeProduct = (id) => removeFromFavorites(id, setFavorites);
+  const removeProduct = (id) => removeFromLocalStorage(id, 'favorites', setFavorites);
 
   return (
     <div
@@ -38,7 +42,7 @@ export default function Favorites() {
                       { priceToReal(Number(product.price)) }
                     </span>
                     <button
-                      onClick={ () => addToCart(product, setCart) }
+                      onClick={ () => addToCart(product) }
                       type="button"
                       className="text-teal-600 hover:text-teal-400 transition-colors"
                     >

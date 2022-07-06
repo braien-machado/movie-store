@@ -1,17 +1,20 @@
 import React, { useContext } from 'react';
 import { Trash } from 'phosphor-react';
 import AppContext from '../context/AppContext';
-import { removeFromCart } from '../helpers/localStorage';
 import { priceToReal } from '../helpers/handlePrice';
 import ListHeader from './ListHeader';
 import CartCheckout from './CartCheckout';
 import ListItemCoreInfo from './ListItemCoreInfo';
 
 export default function Cart() {
-  const { cart, setCart } = useContext(AppContext);
+  const {
+    cart,
+    setCart,
+    removeFromLocalStorage,
+  } = useContext(AppContext);
 
   const clearCart = () => setCart(null);
-  const removeProduct = (id) => removeFromCart(id, setCart);
+  const removeProduct = (id) => removeFromLocalStorage(id, 'cart', setCart);
 
   return (
     <div
