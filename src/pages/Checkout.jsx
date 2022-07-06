@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Modal from '../components/Modal';
 import CheckoutForm from '../components/CheckoutForm';
 import CheckoutTable from '../components/CheckoutTable';
 import CheckoutSubmit from '../components/CheckoutSubmit';
@@ -9,6 +10,8 @@ const LARGE_STYLE = ' xl:gap-0 2xl:justify-center 2xl:gap-[10%]';
 const COMPLETE_STYLE = BASIC_STYLE + MEDIUM_STYLE + LARGE_STYLE;
 
 export default function Checkout() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [customerInfo, setCustomerInfo] = useState(
     {
       name: '',
@@ -27,8 +30,14 @@ export default function Checkout() {
     const sleep = async (ms) => new Promise((resolve) => setTimeout(resolve, ms));
     const SLEEP_DURATION = 5000;
 
+    setIsLoading(true);
     await sleep(SLEEP_DURATION);
-    console.log(customerInfo);
+    setIsLoading(false);
+  };
+
+  const handleClick = async () => {
+    setIsOpen(true);
+    submitSale();
   };
 
   return (
@@ -44,9 +53,14 @@ export default function Checkout() {
         <CheckoutForm values={ customerInfo } updateValue={ setCustomerInfo } />
         <div className="flex flex-col justify-between gap-8 max-w-[500px]">
           <CheckoutTable />
-          <CheckoutSubmit values={ customerInfo } handleSubmit={ submitSale } />
+          <CheckoutSubmit values={ customerInfo } handleSubmit={ handleClick } />
         </div>
       </div>
+      {
+        isOpen && (
+          <Modal isLoading={ isLoading } name={ customerInfo.name } />
+        )
+      }
     </main>
   );
 }
