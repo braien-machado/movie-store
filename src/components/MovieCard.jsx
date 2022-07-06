@@ -16,11 +16,13 @@ export default function MovieCard({ movie }) {
     poster_path: imagePath,
   } = movie;
 
-  const isFavorite = () => favorites.some((favorite) => favorite === id);
-  const toggleFavorite = () => updateFavorite(id, setFavorites);
-
   const price = '9.99';
   const imageUrl = `https://image.tmdb.org/t/p/original/${imagePath}`;
+  const isFavorite = () => favorites.some((favorite) => favorite.id === id);
+  const toggleFavorite = () => updateFavorite(
+    { id, title, image: imageUrl, price },
+    setFavorites,
+  );
 
   // turn div into Link to details page
   return (
@@ -37,7 +39,7 @@ export default function MovieCard({ movie }) {
             <Heart
               size={ 32 }
               weight="fill"
-              className={ isFavorite() ? 'text-red-500' : 'text-gray-600' }
+              className={ favorites && isFavorite() ? 'text-red-500' : 'text-gray-600' }
             />
           </button>
           <img

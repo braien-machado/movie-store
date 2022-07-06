@@ -36,16 +36,32 @@ export const removeFromCart = (id, updateCart) => {
   return newCart.length === 0 ? updateCart(null) : updateCart(newCart);
 };
 
-export const updateFavorite = (id, updateFavorites) => {
+export const removeFromFavorites = (id, setFavorites) => {
   const data = getData('favorites');
 
-  if (!data) return updateFavorites([id]);
+  const newFavorites = data.filter((product) => product.id !== id);
 
-  if (data.findIndex((favoriteId) => favoriteId === id) === NOT_FOUND) {
-    data.push(id);
-    updateFavorites(data);
+  return newFavorites.length === 0 ? setFavorites(null) : setFavorites(newFavorites);
+};
+
+export const updateFavorite = (
+  product,
+  setFavorites,
+) => {
+  const data = getData('favorites');
+
+  if (!data) {
+    const favorites = [product];
+    setFavorites(favorites);
   } else {
-    const newArray = data.filter((favoriteId) => favoriteId !== id);
-    updateFavorites(newArray);
+    const index = data.findIndex((item) => item.id === product.id);
+
+    if (index === NOT_FOUND) {
+      data.push(product);
+      setFavorites(data);
+    } else {
+      const newArray = data.filter((favorite) => favorite.id !== product.id);
+      setFavorites(newArray);
+    }
   }
 };
