@@ -5,26 +5,26 @@ focus:outline-gray-500`;
 
 export default function CheckoutForm() {
   return (
-    <form action="" className="flex flex-col gap-8">
+    <form action="" className="flex flex-col gap-8 w-[300px] xl:w-[492px]">
       <input
-        className={ `${INPUT_BASIC_STYLE} w-[492px]` }
+        className={ `${INPUT_BASIC_STYLE}` }
         type="text"
         placeholder="Nome Completo"
       />
-      <div className="flex gap-8">
+      <div className="flex gap-8 flex-col xl:flex-row">
         <input className={ `${INPUT_BASIC_STYLE}` } type="text" placeholder="CPF" />
         <input className={ `${INPUT_BASIC_STYLE}` } type="text" placeholder="Celular" />
       </div>
       <input
-        className={ `${INPUT_BASIC_STYLE} w-[492px]` }
+        className={ `${INPUT_BASIC_STYLE}` }
         type="email"
         placeholder="E-mail"
       />
-      <div className="flex gap-8">
+      <div className="flex gap-8 flex-col xl:flex-row">
         <input className={ `${INPUT_BASIC_STYLE}` } type="text" placeholder="CEP" />
         <input className={ `${INPUT_BASIC_STYLE}` } type="text" placeholder="Endereço" />
       </div>
-      <div className="flex gap-8">
+      <div className="flex gap-8 flex-col xl:flex-row">
         <input className={ `${INPUT_BASIC_STYLE}` } type="text" placeholder="Cidade" />
         <input className={ `${INPUT_BASIC_STYLE}` } type="text" placeholder="Estado" />
       </div>
