@@ -10,7 +10,7 @@ export default function CheckoutTable() {
       <thead>
         <tr className="text-lg text-left">
           <th className="font-normal pb-4">Imagem</th>
-          <th className="font-normal pb-4 px-4">Nome</th>
+          <th className="font-normal pb-4 px-4 w-12 sm:w-full">Nome</th>
           <th className="font-normal pb-4">Qtd</th>
           <th className="font-normal pb-4 px-4">Preço</th>
         </tr>
