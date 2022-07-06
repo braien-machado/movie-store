@@ -4,7 +4,7 @@ import AppContext from '../context/AppContext';
 import { getTotalPrice } from '../helpers/handlePrice';
 import validateFields from '../helpers/validation';
 
-export default function CheckoutSubmit({ values }) {
+export default function CheckoutSubmit({ values, handleSubmit }) {
   const [isDisabled, setIsDisabled] = useState(true);
   const { cart } = useContext(AppContext);
 
@@ -33,6 +33,7 @@ export default function CheckoutSubmit({ values }) {
           ? 'pointer-events-none bg-gray-400' : 'bg-indigo-700'}
         hover:bg-indigo-800 text-white text-center
         font-semibold rounded transition-colors w-full py-2` }
+        onClick={ handleSubmit }
       >
         Finalizar
       </button>
@@ -41,6 +42,7 @@ export default function CheckoutSubmit({ values }) {
 }
 
 CheckoutSubmit.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
   values: PropTypes.shape({
     name: PropTypes.string,
     cpf: PropTypes.string,

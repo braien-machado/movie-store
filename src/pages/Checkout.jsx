@@ -22,6 +22,15 @@ export default function Checkout() {
     },
   );
 
+  const submitSale = async () => {
+    // sleep function to fake an api request to create sale
+    const sleep = async (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const SLEEP_DURATION = 5000;
+
+    await sleep(SLEEP_DURATION);
+    console.log(customerInfo);
+  };
+
   return (
     <main className="flex flex-col gap-8 items-center sm:items:start sm:mx-[10%]">
       <h1
@@ -35,7 +44,7 @@ export default function Checkout() {
         <CheckoutForm values={ customerInfo } updateValue={ setCustomerInfo } />
         <div className="flex flex-col justify-between gap-8 max-w-[500px]">
           <CheckoutTable />
-          <CheckoutSubmit values={ customerInfo } />
+          <CheckoutSubmit values={ customerInfo } handleSubmit={ submitSale } />
         </div>
       </div>
     </main>
