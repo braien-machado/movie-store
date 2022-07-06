@@ -8,3 +8,10 @@ async function getMovies(page = 1) {
 }
 
 export default getMovies;
+
+export async function getMoviesByQuery(query, page = 1) {
+  const data = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=pt&query=${query}&page=${page}&include_adult=false`)
+    .then((result) => result.json());
+
+  return data.errors !== undefined ? undefined : data;
+}

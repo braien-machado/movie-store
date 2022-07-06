@@ -19,9 +19,6 @@ export default function MovieCard({ movie }) {
   const isFavorite = () => favorites.some((favorite) => favorite === id);
   const toggleFavorite = () => updateFavorite(id, setFavorites);
 
-  console.log(favorites, id);
-  console.log(isFavorite());
-
   const price = '9.99';
   const imageUrl = `https://image.tmdb.org/t/p/original/${imagePath}`;
 

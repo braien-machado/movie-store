@@ -13,7 +13,7 @@ export default function Header() {
   const [isCartHidden, setIsCartHidden] = useState(true);
   const [isSearchInputHidden, setIsSearchInputHidden] = useState(true);
   const { pathname } = useLocation();
-  const { cart } = useContext(AppContext);
+  const { cart, searchText, setSearchText } = useContext(AppContext);
 
   useEffect(() => {
     setIsCartHidden(true);
@@ -46,6 +46,8 @@ export default function Header() {
             id="search-input"
             placeholder="Pesquisa"
             type="text"
+            value={ searchText }
+            onChange={ ({ target }) => setSearchText(target.value) }
           />
           <MagnifyingGlass className="text-gray-800" size={ 32 } />
         </label>

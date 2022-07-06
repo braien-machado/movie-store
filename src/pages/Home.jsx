@@ -1,15 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import getMovies from '../helpers/api';
+import getMovies, { getMoviesByQuery } from '../helpers/api';
 import MovieCard from '../components/MovieCard';
+import AppContext from '../context/AppContext';
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const { searchText } = useContext(AppContext);
 
   async function loadMovies() {
+    let data;
     const nextPage = currentPage + 1;
-    const data = await getMovies(nextPage);
+
+    if (!searchText) {
+      data = await getMovies(nextPage);
+    } else {
+      data = await getMoviesByQuery(searchText, nextPage);
+    }
 
     if (!data) {
       return;
@@ -20,16 +28,24 @@ export default function Home() {
 
   useEffect(() => {
     async function fetchMovies() {
-      const data = await getMovies();
+      let data;
+      if (!searchText) {
+        data = await getMovies();
+      } else {
+        data = await getMoviesByQuery(searchText);
+      }
 
       if (!data) {
         return;
       }
+
       setMovies(data.results);
+      setCurrentPage(1);
+      window.scrollTo(0, 0);
     }
 
     fetchMovies();
-  }, []);
+  }, [searchText]);
 
   return (
     <main className="flex justify-center">
