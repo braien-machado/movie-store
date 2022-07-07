@@ -17,6 +17,7 @@ export default function MovieCard({ movie }) {
     title,
     vote_average: voteAverage,
     poster_path: imagePath,
+    genres,
   } = movie;
 
   const price = '9.99';
@@ -24,7 +25,6 @@ export default function MovieCard({ movie }) {
   const isFavorite = () => favorites.some((favorite) => favorite.id === id);
   const toggleFavorite = () => updateFavorite({ id, title, image: imageUrl, price });
 
-  // turn div into Link to details page
   return (
     <div
       className="w-full sm:w-72 md:w-44 h-fit flex flex-col flex-wrap gap-2"
@@ -54,6 +54,7 @@ export default function MovieCard({ movie }) {
           releaseDate={ releaseDate }
           voteAverage={ voteAverage }
           price={ price }
+          genre={ genres[0] || '' }
         />
       </div>
       <button
@@ -75,5 +76,6 @@ MovieCard.propTypes = {
     title: PropTypes.string,
     release_date: PropTypes.string,
     vote_average: PropTypes.number,
+    genres: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
 };

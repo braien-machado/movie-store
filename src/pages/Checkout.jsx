@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from '../components/Modal';
 import CheckoutForm from '../components/CheckoutForm';
 import CheckoutTable from '../components/CheckoutTable';
@@ -24,6 +24,10 @@ export default function Checkout() {
       state: '',
     },
   );
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const submitSale = async () => {
     // sleep function to fake an api request to create sale
