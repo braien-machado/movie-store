@@ -48,12 +48,12 @@ export default function Header() {
         <label
           className={ `${isSearchInputHidden ? 'hidden' : 'flex'}
           absolute top-[66px] right-0.5 vsm:static
-          vsm:flex items-center bg-white h-[80%] text-gray-800 rounded 
+          vsm:flex items-center bg-gray-100 h-[80%] text-gray-800 rounded 
           px-3 border border-gray-400 min-w-fit w-1/3 gap-3` }
           htmlFor="search-input"
         >
           <input
-            className="focus:outline-none w-full"
+            className="focus:outline-none w-full bg-gray-100"
             id="search-input"
             placeholder="Pesquisa"
             type="text"
